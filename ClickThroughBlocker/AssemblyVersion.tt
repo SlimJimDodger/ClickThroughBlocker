@@ -2,7 +2,6 @@
 <#@ import namespace="System.IO" #>
 <#@ output extension=".cs" #>
 
-<#@ assembly name="EnvDTE" #><# /* This assembly provides access to Visual Studio project properties. */ #>
 <#
 
 	// Instructions
@@ -30,8 +29,8 @@
 	//
 	// Update the following with the complete path to the .version file
 	//
-	string versionfile =  @"D:\Users\jbb\github\ClickThroughBlocker\ClickThroughBlocker.version";
-
+	// string versionfile =  @"D:\Users\jbb\github\ClickThroughBlocker\ClickThroughBlocker.version";
+	string versionfile = this.Host.ResolvePath(@"..\ClickThroughBlocker.version");
 	if (!File.Exists(versionfile))
 	{
 		Write("File: " + versionfile + " missing\n");		
@@ -84,6 +83,7 @@
          patch = 0; 
          build = 0; 
      }
+
 	 //Write("File done");
 
  #>

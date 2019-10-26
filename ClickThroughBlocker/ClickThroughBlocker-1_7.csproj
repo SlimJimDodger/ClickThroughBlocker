@@ -67,31 +67,29 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-     <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\Assembly*.dll">
-	   <Private>False</Private>
+    <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\Assembly*.dll">
+      <Private>False</Private>
     </Reference>
     <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\UnityEngine*.dll">
-	   <Private>False</Private>
-    </Reference> 
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>D:\KSPBackup\1_7_3\Kerbal Space Program\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>D:\KSPBackup\1_7_3\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:\KSPBackup\1_7_3\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-
-start /D D:\Users\jbb\github\ClickThroughBlocker /WAIT deploy.bat  $(TargetDir) $(TargetFileName)
-
-
-if $(ConfigurationName) == Release (
-
-
-
-	start /D D:\Users\jbb\github\ClickThroughBlocker /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)
-
-)</PostBuildEvent>
+    <PostBuildEvent>call $(ProjectDir)postbuild.bat</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
-set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2017\Community\Common7\IDE\texttransform.exe"
+set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2019\Community\Common7\IDE\texttransform.exe"
 %25textTemplatingPath%25 "$(ProjectDir)AssemblyVersion.tt"
 </PreBuildEvent>
   </PropertyGroup>
